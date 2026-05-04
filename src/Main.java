@@ -32,6 +32,7 @@ public class Main {
 
         User found = repo.binarySearchById(2001);
 
+
         System.out.println("\n=== SEARCH RESULT ===");
         if (found != null) {
             System.out.println(found);
