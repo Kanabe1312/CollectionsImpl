@@ -134,11 +134,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findUserByEmailAndPassword(String email, String password) {
 
-        User found = findUserByEmail(email);
-        if(found !=null && found.getPassword().equals(password)){
-            return found;
-        }
-        return null;
+       return users.stream().filter(user -> user.getEmail().equals(email))&&user
     }
 
     @Override
