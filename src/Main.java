@@ -28,6 +28,12 @@ public class Main {
         repo.shuffleUsers();
         printUsers("SHUFFLED", repo.getUsers());
 
+        repo.getAdmins();
+        printUsers("ADMINS: ",repo.getAdmins());
+
+        repo.sortByFirstname();
+        printUsers("FIRST NAME: ",repo.getUsers());
+
 
 
         User found = repo.binarySearchById(2001);

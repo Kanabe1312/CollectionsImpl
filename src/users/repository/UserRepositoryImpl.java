@@ -108,14 +108,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User removeUser(User user) {
-        User found = findUserById(user.getId());
-
-        if (found != null) {
-            users.remove(found);
-            saveUsers();
-            return found;
-        }
-
+        users.removeIf(u -> u.getId() == user.getId());
         return null;
     }
 
@@ -171,7 +164,7 @@ public class UserRepositoryImpl implements UserRepository {
         return user;
     }
 
-//todo:testare impl collection
+//todo:testare impl collections
 
     public void sortUsersById(){
         users.sort((u1,u2)->u1.getId()-u2.getId());
@@ -180,6 +173,7 @@ public class UserRepositoryImpl implements UserRepository {
     public void reverseUsers(){
         Collections.reverse(users);
     }
+
     public void shuffleUsers(){
         Collections.shuffle(users);
     }
@@ -192,6 +186,18 @@ public class UserRepositoryImpl implements UserRepository {
             return users.get(index);
         }
         return null;
+    }
+
+    public List<User> getAdmins() {
+        return users.stream()
+                .filter(user -> user.getType().equals("ADMIN"))
+                .toList();
+    }
+
+    public List<User> sortByFirstname() {
+        return users.stream()
+                .sorted((u1, u2) -> u1.getFirstname().compareTo(u2.getFirstname()))
+                .toList();
     }
 
 
